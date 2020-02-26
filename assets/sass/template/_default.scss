@@ -1,0 +1,366 @@
+@function headings($from:1, $to:6) {
+    @if $from == $to {
+        @return 'h#{$from}';
+    } @else {
+        @return 'h#{$from},' + headings($from+1, $to);
+    }
+}
+
+body{ 
+	font:300 16px $font-family;
+	color:$black;
+	background:$white;
+	*{
+		-webkit-touch-callout: none;
+		outline: none !important;
+		&:focus,&:active,&.focus{
+		   outline: none !important;
+		}
+	}
+	a{
+		font:300 1em $font-family;
+		text-decoration: none;
+		color:inherit;
+		&:active,&:focus,&:hover{
+			text-decoration: none;
+			color:inherit;
+		}
+	}
+	ul{
+		margin:0!important;
+		padding:0;
+		list-style:none;
+		li{
+			padding:0!important;
+		}
+	}
+	#{headings(1,6)} {
+		margin:0;
+		font-weight:300;
+		font-size:1em;
+		color:$black;
+	}
+	.container{
+		width:100%;
+		max-width:1200px;
+		padding-left:15px;
+		padding-right:15px;
+	}
+
+	#wrapper{
+		position:relative;
+		//overflow: hidden;
+	}
+
+	// 遮罩
+	#mask{
+		position:fixed;
+		top:0;
+		left:0;
+		z-index:7;
+		width:100%;
+		height:100%;
+		background:rgba($white,.62);
+		opacity:0;
+		visibility: hidden;
+	}
+
+	// 關閉
+	.close{
+		width:50px;
+		height:50px;
+		position:absolute;
+		top:0;
+		right:0;
+		z-index:1;
+		a{
+			display:block;
+			width:100%;
+			height:100%;
+			text-align:center;
+			padding:16px 0 0 0;
+			@include animate(fill,.3s,ease-in-out);
+			svg{
+				width:18px;
+				path{
+					fill: $mocha;
+					@include animate(fill,.3s,ease-in-out);
+				}
+			}
+			&:active{
+				background:rgba($dimgray,.1);
+			}
+		}
+	}
+
+	// 欄位
+	fieldset.form-group{
+		input.form-control{
+			border:none;
+			border-radius:0;
+			background:none;
+			box-shadow:none;
+			height:40px;
+			font:400 16px $font-family;
+			color:$dimgray;
+			padding-left:0;
+			padding-right:0;
+			&::-webkit-input-placeholder {
+				font-weight:200;
+			}
+			&::-moz-placeholder {
+				font-weight:200;
+			}
+		}
+	}
+
+	// 按鈕
+	.button{
+		&.button-lg{
+			.btn{
+				width:320px;
+				border:1px solid $mocha;
+				color:$mocha;
+				&:hover{
+					background:$mocha;
+					color:$white;
+				}
+				&:active{
+					background:$milk;
+					border:1px solid $milk;
+					color:$mocha;
+				}
+			}
+		}
+		&.button-md{
+			.btn{
+				width:200px;
+				background:$mocha;
+				border:1px solid $mocha;
+				color:$white;
+				&:hover{
+					background:$milk;
+					border:1px solid $milk;
+				}
+				&:active{
+					background:$milk;
+					border:1px solid $milk;
+					color:$mocha;
+				}
+			}
+		}
+		&.button-sp{
+			.btn{
+				width:200px;
+				background:$yellow;
+				border:1px solid $yellow;
+				color:$black;
+				&:hover{
+					background:$milk;
+					border:1px solid $milk;
+					color:$white;
+				}
+				&:active{
+					background:$latte;
+					border:1px solid $latte;
+					color:$white;
+				}
+			}
+		}
+		.btn{
+			background:none;
+			border-radius:0;
+			height:50px;
+			padding:0;
+			font:300 18px $font-family;
+			@include animate(all,.3s,ease-in-out);
+			@media (max-width:$xs){
+				font-size:16px;
+				height:40px;
+				width:200px!important;
+			}
+			&:active{
+				box-shadow:none;
+			}
+		}
+		a.btn{
+			padding:10px 0 0 0;
+			@media (max-width:$xs){
+				padding:7px 0 0 0;
+			}
+		}
+	}
+
+	// 欄位無間距
+	.row.no-padding{
+		margin:0;
+		div[class*="col-"]{
+			padding:0;
+		}
+	}
+
+	// 廣告
+	.ad-container{
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-left:15px;
+		padding-right:15px;
+		text-align:center;
+	}
+	.ad{
+		border:5px solid $mocha;
+		position:relative;
+		overflow:hidden;
+		margin: 0 auto;
+		&.ad-970x250{
+			max-width:980px;
+		}
+		&.ad-728x90{
+			max-width:738px;
+		}
+		&.ad-300x250{
+			max-width:310px;
+		}
+		ins{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%!important;
+			height:100%!important;
+		}
+	}
+
+	// 燈箱
+	#lightboxOverlay.lightboxOverlay{
+		background:$white;
+		opacity:.9;
+		width:100%!important;
+		height:100%!important;
+		position:fixed;
+	}
+	#lightbox.lightbox{
+		top:0!important;
+		.lb-outerContainer{
+			position:fixed;
+			z-index:1;
+			width:100%!important;
+			height:100%!important;
+			top:0!important;
+			background:transparent;
+			border-radius: 0;
+			pointer-events: none;
+			@include flex(wrap,center,center);
+			.lb-container{
+				img.lb-image{
+					border:none;
+				}
+				.lb-nav{
+					clear: both;
+					width:100%;
+					height:100px;
+					position:absolute;
+					top:0;
+					bottom:0;
+					margin:auto 0;
+					pointer-events: none;
+					padding:0 20px;
+					& > a{
+						width:50px;
+						height:100%;
+						background-position: center center;
+						background-size: 30px;
+						background-repeat: no-repeat;
+						text-indent:-7777px;
+						font-size:0%;
+						pointer-events: auto;
+						opacity:1;
+						@include animate(all,.2s,ease-in-out);
+						@media (max-width:$sm){
+							background-size: 20px;
+						}
+						&.lb-prev{
+							float:left;
+							background-image:url('~static/owl-prev.svg');
+							&:hover{
+								transform: translate3D(-5px, 0, 0);
+							}
+						}
+						&.lb-next{
+							float:right;
+							background-image:url('~static/owl-next.svg');
+							&:hover{
+								transform: translate3D(5px, 0, 0);
+							}
+						}
+					}
+				}
+			}
+		}
+		.lb-dataContainer{
+			position:fixed;
+			z-index:2;
+			width:50px!important;
+			top:0;
+			right:0;
+			padding:0;
+			.lb-data{
+				padding:0;
+				.lb-details{
+					display:none;
+				}
+				.lb-closeContainer{
+					.lb-close{
+						width:50px;
+						height:50px;
+						background:url('~static/icon-close.svg') center center no-repeat;
+						background-size: 18px;
+						top:0;
+						right:0;
+						z-index:1;
+						float:none;
+						opacity:1;
+						&:active{
+							background-color:rgba($dimgray,.1);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.loading-page {
+		// custom loading page
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(255, 255, 255, 0.8);
+		text-align: center;
+		font-size: 30px;
+		font-family: sans-serif;
+		i {
+		color: $mocha;
+		}
+	}
+
+	main.main{
+		margin:70px 0 0 0;
+		padding: 0 0 100px 0;
+		// will-change: filter;
+		// -webkit-backface-visibility: hidden;
+		// -webkit-perspective: 1000;
+		// -webkit-transform: translate3d(0,0,0);
+		// backface-visibility: hidden;
+		// perspective: 1000;
+		// transform: translate3d(0,0,0);
+		@media (max-width: $xs){
+			margin:50px 0 0 0;
+		}
+	}
+}

@@ -1,0 +1,158 @@
+
+section#search{
+	position:fixed;
+	overflow:hidden;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	width:100%;
+	max-width:1200px;
+	margin: auto;
+	height:0px;
+	z-index:8;
+	@media (max-width: $xs){
+		background:$white;
+	}
+	.container{
+		padding:0 30px;
+		-webkit-overflow-scrolling: touch;
+		@media (max-width: $xs){
+			padding:100px 15px 0 15px;
+		}
+		form, div{
+			height:150px;
+			border-bottom:3px solid $dimgray;
+			margin: 0 0 40px 0;
+			@media (max-width: $xs){
+				height:60px;
+				margin: 0 0 20px 0;
+			}
+			fieldset.form-group{
+				width:calc(100% - 95px);
+				margin:0;
+				@media (max-width: $xs){
+					width:calc(100% - 35px);
+				}
+				input.form-control{
+					text-align:left;
+					font:700 90px source-han-sans-traditional, sans-serif;
+					height:inherit;
+					padding:0;
+					&::-webkit-input-placeholder {
+						font-weight:700;
+						color:$dimgray;
+						letter-spacing: .1em;
+						@media (max-width: $xs){
+							color:$black;
+						}
+					}
+					&::-moz-placeholder {
+						font-weight:700;
+						color:$dimgray;
+						letter-spacing: .2em;
+						@media (max-width: $xs){
+							color:$black;
+						}
+					}
+					@media (max-width: $xs){
+						font-size:30px;
+						text-align:left;
+						color:$black;
+					}
+				}
+			}
+			.button{
+				width:75px;
+				height:100%;
+				@media (max-width: $xs){
+					width:35px;
+				}
+				button.btn{
+					width:100%;
+					height:100%;
+					@media (max-width: $xs){
+						width:100%!important;
+					}
+					svg{
+						path{
+							fill:$mocha;
+							@include animate(fill,.2s,ease-in-out);
+						}
+					}
+					&:hover{
+						svg{
+							path{
+								fill:$latte
+							}
+						}
+					}
+				}
+			}
+		}
+		section.tags{
+			ul{
+				li{
+					a{
+						display:inline-block;
+						border:1px solid $mocha;
+						padding:1px 17.5px 2px 17.5px;
+						margin:5px 7.5px;
+						border-radius:15px;
+						font-size:14px;
+						@include animate(all,.2s,ease-in-out);
+						@media (max-width:$xs){
+							font-size:12px;
+							margin:5px 10px 5px 0;
+						}
+						&:hover{
+							background: $latte;
+							border:1px solid $latte;
+							color:$white;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.ui-helper-hidden-accessible{
+	display: none;
+}
+
+// 搜尋預設字
+ul.ui-autocomplete{
+	height:50vh;
+	position:fixed!important;
+	top:inherit!important;
+	bottom:0;
+	left:0!important;
+	right:0;
+	width:calc(100% - 60px)!important;
+	max-width: 1140px;
+	margin: 0 auto!important;
+	padding: 20px 0 0 0;
+	z-index:8;
+	@media (max-width:$xs){
+		width:calc(100% - 30px)!important;
+		top:160px!important;
+		bottom:inherit;
+	}
+	li.ui-menu-item{
+		margin: 0 0 5px 0;
+		.ui-menu-item-wrapper{
+			font:600 1.5em $font-family;
+			color:$dimgray;
+			@media (max-width:$xs){
+				font-size:1em;
+				color:$black;
+			}
+		}
+		&:hover{
+			.ui-menu-item-wrapper{
+				color:$mocha;
+			}
+		}
+	}
+}

@@ -1,0 +1,698 @@
+
+main.main.home{
+	margin:0!important;
+	// 標題
+	.section-title{
+		position:relative;
+		text-align:center;
+		margin: 0 0 60px 0;
+		@media (max-width:$xs){
+			margin: 0 0 30px 0;
+		}
+		&::before{
+			display:block;
+			content:'';
+			width:100%;
+			height:1px;
+			background:$mocha;
+			position:absolute;
+			bottom:20px;
+			left:0;
+			z-index:1;
+			@media (max-width:$xs){
+				bottom:16px;
+			}
+		}
+		h2{
+			@extend %sh-serif;
+			font-size:30px;
+			line-height:1.6em;
+			letter-spacing: .1em;
+			color:$black;
+			background:$white;
+			display:inline-block;
+			padding: 0 35px;
+			position:relative;
+			z-index:2;
+			@media (max-width:$xs){
+				font-size:22px;
+				padding: 0 20px;
+			}
+		}
+	}
+
+	// 精選
+	section.choice{
+		position:relative;
+		overflow: hidden;
+		padding: 0 0 30px 0;
+		@media (max-width:$xs){
+			padding:0;
+		}
+		.spotlight{
+			position:relative;
+			z-index:1;
+			border-bottom:6px solid $mocha;
+			.glass {
+				// background-image: url('http://s3.beautimode.com/upload/media/6f8afa09abaee2f1c16159ce0c379d42.jpg');
+				position: absolute;
+				width:100%;
+				height:105px;
+				top:-10px;
+				left:0;
+				overflow: hidden;
+				z-index:1;
+				background: center center no-repeat fixed;
+				background-size: cover;
+				-webkit-filter: blur(10px);
+				filter: blur(10px);
+			}
+			.spotlight-img{
+				height:calc(100vh);
+				position:relative;
+				z-index:2;
+				&::after{
+					content:'';
+					display:block;
+					width:100%;
+					height:100%;
+					background:rgba($black,.4);
+					position: absolute;
+					top:0;
+					left:0;
+				}
+			}
+			.spotlight-text{
+				position: absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				z-index:3;
+				@include flex(wrap,center,center);
+				article{
+					float:right;
+					max-width:375px;
+					position: relative;
+					padding: 0 0 45px 0;
+					@media (max-width:$sm){
+						float:none;
+						margin: 0 auto;
+					}
+					&::before{
+						content:'';
+						display:block;
+						width:62%;
+						height:1px;
+						background:$milk;
+						position:absolute;
+						bottom:0;
+						left:0;
+						right:0;
+						margin: 0 auto;
+						@include animate(width,.2s,ease-in-out);
+					}
+					&:hover{
+						&::before{
+							width:100%;
+						}
+					}
+					a{
+						color:$white;
+						@include animate(text-shadow,.3s,ease-in-out);
+						&:hover{
+							text-shadow: 2px 2px 5px rgba($black,.62);
+						}
+					}
+					span{
+						display:block;
+						&.category{
+							font-size:22px;
+							margin: 0 0 25px 0;
+							@media (max-width:$xs){
+								font-size:16px;
+							}
+						}
+					}
+					h1.article-title{
+						a{
+							@extend %sh-serif;
+							font-size:30px;
+							line-height:1.6em;
+							letter-spacing: .1em;
+							@media (max-width:$xs){
+								font-size:24px;
+							}
+						}
+					}
+				}
+			}
+		}
+		& > .container{
+			transform:translateY(-70px);
+			-webkit-transform:translateY(-70px);
+			position:relative;
+			z-index: 2;
+			@media (max-width:$xs){
+				padding:0;
+			}
+			@include owl;
+		}
+	}
+
+	// 專題
+	section.topic{
+		position:relative;
+		.section-title{
+			position:absolute;
+			top:95px;
+			width:100%;
+			z-index:2;
+			margin:0;
+			@media (max-width:$xs){
+				top:55px;
+			}
+			&::before{
+				display:none;
+			}
+			h2{
+				color:$white;
+				background:none;
+			}
+		}
+		
+		ul.owl-carousel{
+			.owl-stage-outer{
+				.owl-stage{
+					.owl-item{
+						li{
+							//height:555px;
+							padding-bottom: 170px!important;
+							position: relative;
+							// @media (max-width:$xs){
+							// 	height:inherit;
+							// }
+							@media (max-width:$xs){
+								//height:calc(100vh - 50px);
+								padding-bottom: inherit!important;
+							}
+							&:before{
+								content:'';
+								display:block;
+								position:absolute;
+								top:0;
+								left:0;
+								background: rgba($black,.55);
+								width:100%;
+								height:100%;
+								z-index:0;
+							}
+							.blurbg{
+								filter: blur(10px);
+								position:absolute;
+								width:100%;
+								height:100%;
+								z-index:-1;
+								top:0;
+								left:0;
+								background:{
+									size:cover;
+									position:center center;
+									repeat:no-repeat;
+								}
+							}
+							article{
+								padding:175px 0 0 0;
+								position:relative;
+								z-index:1;
+								@media (max-width:$xs){
+									padding:100px 0 200px 0;
+								}
+								span.author{
+									display:block;
+									text-align:center;
+									font-size:14px;
+									color:$white;
+									margin: 0 0 45px 0;
+									@media (max-width:$sm){
+										font-size:12px;
+									}
+									@media (max-width:$xs){
+										margin: 0 0 15px 0;
+									}
+									a{
+										display:inline-block;
+										font-size:1em;
+										color:$white;
+										margin: 0 3px;
+										&:hover{
+											text-decoration: underline;
+										}
+										b{
+											font-weight:700;
+											color:$white;
+										}
+									}
+								}
+								& > a{
+									display:block;
+									max-width:880px;
+									margin: 0 auto;
+									.pull-left,.pull-right{
+										width:50%;
+										padding: 0 30px;
+										position:relative;
+										@media (max-width:$xs){
+											width:100%;
+										}
+										&:before{
+											content: '';
+											display: block;
+											width: 1px;
+											height:100%;
+											background: #D9CEAD;
+											position: absolute;
+											bottom:0;
+										}
+									}
+									.pull-left{
+										&:before{
+											right:0;
+											@media (max-width:$xs){
+												width:calc(100% - 60px);
+												height:1px;
+												right:inherit;
+											}
+										}
+									}
+									.pull-right{
+										&:before{
+											left:-1px;
+											@media (max-width:$xs){
+												display:none;
+											}
+										}
+									}
+									h3{
+										@extend %sh-serif;
+										color:$white;
+										font-weight:500;
+										font-size:24px;
+										line-height: 2em;
+										transform:translateX(440px);
+										opacity:0;
+										@media (max-width:$sm){
+											font-size:20px;
+										}
+										@media (max-width:$xs){
+											line-height: 1.7em;
+											margin: 0 0 30px 0;
+											text-align:center;
+										}
+									}
+									p{
+										transform:translateX(-440px);
+										color:$white;
+										margin:10px 0;
+										opacity:0;
+									}
+									span.btn{
+										color:$milk;
+										margin: 30px 0 0 0;
+									}
+								}
+							}
+						}
+						&.active{
+							li{
+								article{
+									& > a{
+										h3{
+											animation: topich3 1s $ease forwards;
+											@keyframes topich3 {
+											  0% {
+											  	opacity:0;
+											    transform:translateX(100px);
+											  }
+											  100% {
+											  	opacity:1;
+											    transform:translateX(0px);
+											  }
+											}
+										}
+										p{
+											animation: topicp 1s $ease forwards;
+											@keyframes topicp {
+											  0% {
+											  	opacity:0;
+											    transform:translateX(-100px);
+											  }
+											  100% {
+											  	opacity:1;
+											    transform:translateX(0px);
+											  }
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			.owl-nav{
+				clear: both;
+				width:100%;
+				height:100px;
+				position:absolute;
+				top:0;
+				bottom:0;
+				margin:auto 0;
+				z-index:3;
+				pointer-events: none;
+				padding:0 20px;
+				@media (max-width:$sm){
+					display:none
+				}
+				& > div{
+					width:50px;
+					height:100%;
+					background-position: center center;
+					background-size: 30px;
+					background-repeat: no-repeat;
+					text-indent:-7777px;
+					font-size:0%;
+					pointer-events: auto;
+					@include animate(all,.2s,ease-in-out);
+					@media (max-width:$sm){
+						background-size: 20px;
+					}
+					&.owl-prev{
+						float:left;
+						background-image:url('~static/owl-prev.svg');
+						&:hover{
+							transform:translateX(-5px)
+						}
+					}
+					&.owl-next{
+						float:right;
+						background-image:url('~static/owl-next.svg');
+						&:hover{
+							transform:translateX(5px)
+						}
+					}
+				}
+			}
+		}
+		ul.owl-dots{
+			position:absolute;
+			width:100%;
+			height:75px;
+			bottom:45px;
+			left:0;
+			z-index:1;
+			text-align:center;
+			li{
+				display:inline-block;
+				width:75px;
+				height:75px;
+				border-radius:50%;
+				margin:0 7.5px;
+				position:relative;
+				cursor:pointer;
+				@include animate(transform,.3s,ease-in-out);
+				svg{
+					position:absolute;
+					top:0;
+					left:0;
+					opacity:0;
+					.path{
+						stroke-dasharray: 470;
+						stroke-width:5;
+						stroke-linecap: 'round';
+						fill: none;
+						stroke: $milk;
+					}
+				}
+				figure{
+					border-radius:50%;
+					width:75px;
+					height:75px;
+					background:{
+						position: center center;
+						repeat:no-repeat;
+						size: cover
+					}
+				}
+				@media (min-width:$sm){
+					&:hover{
+						transform:translateY(-5px)
+					}
+				}
+				&.active{
+					svg{
+						opacity:1;
+						.path{
+							animation: topicdots 7s linear forwards;
+							@keyframes topicdots {
+							  from {
+							     stroke-dashoffset: 470;
+							  }
+							  to {
+							     stroke-dashoffset: 0;
+							  }
+							}
+						}
+					}
+				}
+			}	
+		}
+	}
+
+	// 最新
+	section.latest{
+		padding:100px 0 155px 0;
+		@media (max-width:$xs){
+			padding:60px 0;
+		}
+		.row{
+			margin: 0 0 35px 0;
+			@include flex(wrap,initial,initial);
+			.ad-article{
+				background:$gray;
+				margin:30px 0 0 0;
+				padding:15px
+			}
+			// 修正 row flexbox 在 safari 下跑版問題
+			&:before,&:after{
+				content: initial;
+			}
+		}
+		.section-title{
+			@media (max-width:$xs){
+				margin:0;
+			}
+		}
+	}
+
+	// 熱門
+	section.popular{
+		background:$gray;
+		.container{
+			background:$white;
+			position: relative;
+			transform: translateY(-90px);
+			box-shadow: 0 15px 15px rgba($latte,.2);
+			border-radius:5px;
+			padding:60px 0 100px 0;
+			@media (max-width:$xs){
+				transform: translateY(0px);
+				background:$gray;
+				box-shadow:none;
+				border-radius:0;
+				padding:60px 0 15px 0;
+			}
+			.section-title,.clearfix{
+				width:100%;
+				max-width:900px;
+			}
+			.section-title{
+				margin: 0 auto 60px auto;
+				@media (max-width:$xs){
+					margin: 0 auto 30px auto;
+				}
+				h2{
+					@media (max-width:$xs){
+						background:$gray;
+					}
+				}
+			}
+			.clearfix{
+				margin: 0 auto;
+				.pull-left,.pull-right{
+					width:50%;
+					@media (max-width:$xs){
+						width:100%;
+					}
+				}
+				ul{
+					li{
+						position:relative;
+						margin: 0 0 30px 0;
+						span{
+							position:absolute;
+							top:0;
+							left:0;
+							color:$mocha;
+							font: italic 30px 'Bodoni 72';
+							display:block;
+							width:65px;
+							text-align: center;
+							@media (max-width:$xs){
+								font:normal 600 22px 'Bodoni 72';
+								width:65px;
+							}
+						}
+						a{
+							padding:0 30px 0 65px;
+							display:block;
+							@include animate(color,.2s,ease-in-out);
+							@media (max-width:$xs){
+								font-size:.9em;
+							}
+							&:hover{
+								color:$mocha;
+							}
+						}
+					}
+				}
+			}  
+		}
+		.ad-container{
+			padding:10px 15px 100px 15px;
+			background:$gray;
+			@media (max-width:$xs){
+				padding:60px 15px;
+				background:$white;
+			}
+		}
+	}
+
+	// 影音
+	section.video{
+		position: relative;
+		overflow: hidden;
+  		background: transparent;
+  		height:432px;
+  		width:100%;
+  		left:0;
+  		@include flex(wrap,center,center);
+  		&::after{
+			content:'';
+			display:block;
+			width:100%;
+			height:100%;
+			background:rgba($black,.62);
+			position: absolute;
+			top:0;
+			left:0;
+			z-index: 0;
+			// pointer-events:none;
+			@include animate(opacity,.2s,$ease);
+		}
+		&.active{
+			background:$black;
+			&::after{
+				opacity:0;
+			}
+			.video-player{
+				@media (max-width:$xs){
+					width: 100%;
+	    			height: calc(100vw * 9 / 16);
+	    			left:0;
+	    		}
+			}
+		}
+		.video-close{
+			display:none;
+			a{
+				background:$black;
+				svg path{fill:$white}
+			}
+		} 
+		.container{
+			position:relative;
+  			z-index: 2;
+  			max-width:480px;
+  			a{
+	  			display:block;
+	  			h3{
+					@extend %sh-serif;
+					color:$white;
+					font-weight:500;
+					font-size:24px;
+					line-height: 2em;
+					@media (max-width:$sm){
+						font-size:20px;
+					}
+					@media (max-width:$xs){
+						line-height: 1.7em;
+					}
+				}
+				span.btn{
+					color:$white;
+					margin: 30px 0 0 0;
+					font-size:16px;
+					font-weight:300;
+					@media (max-width:$xs){
+						display:inline-block;
+						width:50px;
+						height:50px;
+						text-indent:-7777px;
+						background:url('~static/icon-play.svg') center center no-repeat;
+						background-size:contain;
+					}
+				}
+	  		}
+		}
+  		
+  		.video-player{
+			position:absolute;
+			width:100%;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+			margin:auto;
+			@media (max-width:$xs){
+			    width: 768px;
+    			height: 100%;
+    			left: calc( -384px + 50vw)
+    		}
+			@include animate(top,.2s,$ease);
+			canvas{
+				position:absolute;
+				width:100%;
+				height:100%;
+			}
+		}
+	}
+
+	// 活動
+	section.event{
+		background:$white;
+		padding: 100px 0 60px 0;
+		@media (max-width:$xs){
+			padding: 60px 0;
+			background:$gray;
+		}
+		.section-title{
+			h2{
+				@media (max-width:$xs){
+					background:$gray;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,47 @@
+main.main{
+	section.pager{
+		.el-pagination {
+			text-align: center;
+			padding:50px 0!important;
+			ul {
+				@media (max-width:$xs){
+					padding:30px 0!important;
+				}
+				li{
+					margin: 0 5px;
+					@media (max-width:$xs){
+						margin: 0 2px;
+					}
+					font-size:16px;
+					font-weight:400;
+					color:$mocha;
+					width:30px;
+					height:30px;
+					line-height: 1.7em;
+					border-radius:5px;
+					border:1px solid transparent;
+					@media (max-width:$xs){
+						font-size:14px;
+						width:25px;
+						height:25px;
+					}
+					&:hover{
+						border-color:$mocha;
+					}
+					&.active {
+						border-color:$mocha;
+						font-weight: bold;
+					}
+				}
+			}
+
+			button {
+				padding-top: 3px;
+				i {
+					color: $mocha;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+}

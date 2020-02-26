@@ -1,0 +1,153 @@
+@charset "UTF-8"; 
+
+// font-weight:200, 400, 700
+$font-family: "source-han-sans-traditional", serif, 微軟正黑體, Microsoft JhengHei;
+
+%sh-serif{
+	font-weight:700;
+	font-family:  "source-han-serif-tc", serif;
+}
+
+$xxs: 479px;
+$xs: 767px;
+$sm: 992px;
+$md: 1200px;
+
+$black: #000;
+$white: #fff;
+$yellow: #E6B522;
+$milk: #D9CEAD;
+$latte: #CCB87A;
+$mocha: #A2893D;
+$gray: #f2f2f2;
+$dimgray: #807D73;
+
+$ease: cubic-bezier(.85,.1,.15,1);
+
+@mixin animate($where, $time, $ease){
+	transition-property: $where;
+	transition-duration: $time;
+	transition-timing-function: $ease;
+	-webkit-transition-property: $where;
+	-webkit-transition-duration: $time;
+	-webkit-transition-timing-function: $ease;
+}
+
+@mixin flex($wrap,$align,$justify){
+	display: flex;
+	flex-wrap: $wrap;
+	align-items: $align;
+	justify-content: $justify;
+	display: -webkit-flex;
+	-webkit-flex-wrap: $wrap;
+	-webkit-align-items: $align;
+	-webkit-justify-content: $justify;
+}
+
+@mixin box{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+@mixin owl{
+	ul.owl-carousel{
+		display:block;
+		margin: 0 0 30px 0!important;
+		li{
+			width:33.333%;
+			vertical-align: top;
+			@media (max-width:$xs){
+				width:calc(100vw - 80px);
+			}
+		}
+		.owl-stage-outer{
+			@media (max-width:$xs){
+				padding:0 0 55px 0;
+			}
+			.owl-stage{
+				.owl-item{
+					.thumb-grid{
+						box-shadow: 0 8px 10px rgba($mocha,.24);
+						& > a{
+							figure{
+								&::after{
+									opacity:1;
+								}
+							}
+						}
+					}
+					&.active.center{
+						z-index:2;
+						.thumb-grid{
+							padding-bottom:20px;
+							& > span{
+								&.category{
+									transform: translateY(-30px);
+								}
+							}
+							& > a{
+								figure{
+									background:{
+										position: center 0;
+									}
+									&::after{
+										opacity:0;
+									}
+								}
+							}
+						}
+						// .thumb-grid{
+						// 	transform:translateY(0px);
+						// 	-webkit-transform:translateY(0px);
+						// 	span{
+						// 		&.category{
+						// 			top:15px;
+						// 		}
+						// 	}
+						// 	& > a{
+						// 		figure{
+						// 			background:{
+						// 				position: center 0;
+						// 			}
+						// 		}
+						// 		.content{
+						// 			h3{
+						// 				padding: 15px 15px 30px 15px;
+						// 			}
+						// 		}
+						// 	}
+						// }
+					}
+				}
+			}
+		}
+		
+		.owl-dots{
+			text-align:center;
+			position:absolute;
+			bottom:0;
+			width:100%;
+			.owl-dot{
+				display:inline-block;
+				width:7px;
+				height:7px;
+				margin:0 5px;
+				span{
+					display:block;
+					width:100%;
+					height:100%;
+					background:rgba($latte,.5);
+					border-radius:50%;
+				}
+				&.active{
+					span{
+						background:$mocha
+					}
+				}
+			}
+		}
+	}
+}

@@ -6,7 +6,7 @@ import {
   promisify,
   middlewareSeries,
   sanitizeComponent,
-  resolveRouteComponents,
+
   getMatchedComponents,
   getMatchedComponentsInstances,
   flatMapComponents,
@@ -120,41 +120,13 @@ function mapTransitions (Components, to, from) {
   })
 }
 
-async function loadAsyncComponents (to, from, next) {
+function loadAsyncComponents (to, from, next) {
   // Check if route path changed (this._pathChanged), only if the page is not an error (for validate())
   this._pathChanged = Boolean(app.nuxt.err) || from.path !== to.path
   this._queryChanged = JSON.stringify(to.query) !== JSON.stringify(from.query)
   this._diffQuery = (this._queryChanged ? getQueryDiff(to.query, from.query) : [])
 
-  if (this._pathChanged && this.$loading.start && !this.$loading.manual) {
-    this.$loading.start()
-  }
-
   try {
-    if (!this._pathChanged && this._queryChanged) {
-      const Components = await resolveRouteComponents(
-        to,
-        (Component, instance) => ({ Component, instance })
-      )
-      // Add a marker on each component that it needs to refresh or not
-      const startLoader = Components.some(({ Component, instance }) => {
-        const watchQuery = Component.options.watchQuery
-        if (watchQuery === true) {
-          return true
-        }
-        if (Array.isArray(watchQuery)) {
-          return watchQuery.some(key => this._diffQuery[key])
-        }
-        if (typeof watchQuery === 'function') {
-          return watchQuery.apply(instance, [to.query, from.query])
-        }
-        return false
-      })
-      if (startLoader && this.$loading.start && !this.$loading.manual) {
-        this.$loading.start()
-      }
-    }
-
     // Call next()
     next()
   } catch (error) {
@@ -252,14 +224,6 @@ async function render (to, from, next) {
   // nextCalled is true when redirected
   let nextCalled = false
   const _next = (path) => {
-    if (from.path === path.path && this.$loading.finish) {
-      this.$loading.finish()
-    }
-
-    if (from.path !== path.path && this.$loading.pause) {
-      this.$loading.pause()
-    }
-
     if (nextCalled) {
       return
     }
@@ -409,17 +373,11 @@ async function render (to, from, next) {
 
       const hasFetch = Boolean(Component.options.fetch)
 
-      const loadingIncrease = (hasAsyncData && hasFetch) ? 30 : 45
-
       // Call asyncData(context)
       if (hasAsyncData) {
         const promise = promisify(Component.options.asyncData, app.context)
           .then((asyncDataResult) => {
             applyAsyncData(Component, asyncDataResult)
-
-            if (this.$loading.increase) {
-              this.$loading.increase(loadingIncrease)
-            }
           })
         promises.push(promise)
       }
@@ -434,9 +392,6 @@ async function render (to, from, next) {
           p = Promise.resolve(p)
         }
         p.then((fetchResult) => {
-          if (this.$loading.increase) {
-            this.$loading.increase(loadingIncrease)
-          }
         })
         promises.push(p)
       }
@@ -446,10 +401,6 @@ async function render (to, from, next) {
 
     // If not redirected
     if (!nextCalled) {
-      if (this.$loading.finish && !this.$loading.manual) {
-        this.$loading.finish()
-      }
-
       next()
     }
   } catch (err) {
@@ -606,7 +557,6 @@ function addHotReload ($component, depth) {
     this.error()
     let promises = []
     const next = function (path) {
-      this.$loading.finish && this.$loading.finish()
       router.push(path)
     }
     await setContext(app, {
@@ -615,10 +565,6 @@ function addHotReload ($component, depth) {
       next: next.bind(this)
     })
     const context = app.context
-
-    if (this.$loading.start && !this.$loading.manual) {
-      this.$loading.start()
-    }
 
     callMiddleware.call(this, Components, context)
     .then(() => {
@@ -651,7 +597,6 @@ function addHotReload ($component, depth) {
       let pAsyncData = promisify(Component.options.asyncData || noopData, context)
       pAsyncData.then((asyncDataResult) => {
         applyAsyncData(Component, asyncDataResult)
-        this.$loading.increase && this.$loading.increase(30)
       })
       promises.push(pAsyncData)
 
@@ -659,13 +604,12 @@ function addHotReload ($component, depth) {
       Component.options.fetch = Component.options.fetch || noopFetch
       let pFetch = Component.options.fetch(context)
       if (!pFetch || (!(pFetch instanceof Promise) && (typeof pFetch.then !== 'function'))) { pFetch = Promise.resolve(pFetch) }
-      pFetch.then(() => this.$loading.increase && this.$loading.increase(30))
+
       promises.push(pFetch)
 
       return Promise.all(promises)
     })
     .then(() => {
-      this.$loading.finish && this.$loading.finish()
       _forceUpdate()
       setTimeout(() => hotReloadAPI(this), 100)
     })

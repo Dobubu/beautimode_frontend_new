@@ -1,0 +1,74 @@
+
+#progress{
+	width:100%;
+	height:70px;
+	position:fixed;
+	transform: translate3D(0, -75px, 0);
+	top:0;
+	left:0;
+	z-index:7;
+	background:rgba($white,.9);
+	@include animate(transform, .5s, $ease);
+	@media (max-width:$xs){
+		transform: translate3D(0, -55px, 0);
+		height:50px;
+	}
+	&.active{
+		transform: translate3D(0, 0px, 0);
+	}
+	& > .container{
+		border-bottom:1px solid $mocha;
+		height:100%;
+		width:calc(100% - 60px);
+		max-width:1920px;
+		padding:0;
+		position:relative;
+		z-index:2;
+		@media (max-width:$xs){
+			width:calc(100% - 30px);
+		}
+		h2{
+			color:$mocha;
+			font-size:20px;
+			padding:25px 0 0 0;
+			display:block;
+			width:100%;
+			height:100%;
+			position:relative;
+			overflow: hidden;
+			white-space: nowrap;
+			@media (max-width:$xs){
+				padding:17px 0 0 0;
+				font-size:15px;
+			}
+			&:before{
+				content:'...';
+				display:none;
+				background:$white;
+				position:absolute;
+				top:0;
+				right:0;
+				width:20px;
+				height:100%;
+				text-align:center;
+				padding:19px 0 0 0;
+				@media (max-width:$sm){
+					display:block;
+				}
+				@media (max-width:$xs){
+					padding:17px 0 0 0;
+				}
+			}
+		}
+		.bar{
+			position:absolute;
+			bottom:-3px;
+			left:0;
+			width:100%;
+			height:5px;
+			background:$mocha;
+			transform-origin: left center;
+			transform: sclaeX(0);
+		}
+	}
+}

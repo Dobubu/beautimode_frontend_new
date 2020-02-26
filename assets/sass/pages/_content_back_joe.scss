@@ -1,0 +1,131 @@
+.article-body {
+  ul li {
+    &:before {
+      content: "\2022";
+      margin-left: -1.5em;
+      margin-right: 0.3em;
+      text-align: right;
+      display: inline-block;
+      white-space: nowrap;
+      width: 1.2em;
+    }
+
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .block-img,
+  .block-singleImg {
+    position: relative;
+    box-sizing: border-box !important;
+
+    .container {
+      padding: 25px 0px;
+      max-width: 700px;
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+      white-space: initial;
+      text-align: center;
+
+      figure {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 40px;
+        margin-inline-end: 40px;
+        margin: 0;
+
+        img {
+          margin: 0px auto;
+          vertical-align: middle;
+          border: 0;
+          max-height: 500px;
+        }
+      }
+
+      cite {
+        color: rgb(128, 125, 115);
+        display: inline-block;
+        font: 300 14px source-han-sans-traditional, serif, 微軟正黑體,
+          "Microsoft JhengHei";
+        margin: 10px 0px 0px;
+
+        a {
+          color: rgb(128, 125, 115);
+        }
+      }
+    }
+  }
+
+  .block-instagram,
+  .block-multi-instagram {
+    position: relative;
+
+    .container {
+      iframe {
+        width: 100%;
+      }
+    }
+  }
+
+  .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .block-link,
+  .block-innerReading {
+    position: relative;
+
+    .container {
+      padding: 0px 55px;
+    }
+
+    ul li {
+      text-align: center;
+      font-size: 16px;
+      margin: 0px 0px 15px;
+
+      &::before {
+        content: "";
+      }
+
+      a {
+        color: #a2893d !important;
+        font-size: 1em;
+        text-decoration: none;
+
+        &:hover {
+          color: #a2893d !important;
+          border-bottom: 1px solid #a2893d !important;
+        }
+      }
+    }
+  }
+
+  .block-twitter {
+    position: relative;
+
+    twitter-widget {
+      margin: auto;
+    }
+  }
+
+  .block-embed,
+  .block-mulit-embed {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .multi-embed {
+      display: flex;
+
+      .embed-left,
+      .embed-right {
+        padding: 5px;
+        min-width: 300px;
+      }
+    }
+  }
+}

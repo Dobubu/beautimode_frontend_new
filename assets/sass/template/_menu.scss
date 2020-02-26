@@ -1,0 +1,119 @@
+
+menu#menu{
+	position:fixed;
+	width:100%;
+	height:100vh;
+	top:0;
+	left:0;
+	background:$gray;
+	z-index:8;
+	margin:0;
+	padding:0;
+	transform:translateX(-100%);
+	-webkit-transform:translateX(-100%);
+	.container{
+		padding:0;
+		overflow:scroll;
+		-webkit-overflow-scrolling: touch;
+		height:100%;
+		.menu-main{
+			background:$white;
+			padding: 50px 0 30px 0;
+			ul.menu-level-1{
+				width: 200px;
+				margin: 0 auto 30px auto!important;
+				& > li{
+					margin: 0 0 10px 0;
+					& > a{
+						display:inline-block;
+						border-bottom:1px solid $mocha;
+						padding:5px;
+						width: 42px;
+						text-align:left;
+						@include animate(all, .3s, $ease);
+						&.ui-state-active{
+							width:100%;
+							color:$mocha;
+						}
+						&:active{
+							background:rgba($dimgray,.1);
+						}
+					}
+					ul.menu-level-2{
+						padding:15px 0;
+						li{
+							a{
+								display:block;	
+								padding:7.5px;
+								color:$dimgray;
+								font-size:14px;
+								&:active{
+									background:rgba($dimgray,.1);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.menu-member{
+			margin: 0 0 50px 0;
+			.profile{
+				width: 75px;
+				margin: 0 auto;
+				position:relative;
+				top:-37.5px;
+				a{
+					display:block;
+					figure{
+						background:{
+							repeat: no-repeat;
+							position: center center;
+							size: cover;
+						}
+						width: 75px;
+						height:75px;
+					    border-radius: 50%;
+					    display: inline-block;
+					}
+					span.name{
+						display:inline-block;
+						color:$mocha;
+						border-bottom:1px solid $mocha;
+						padding:2px 7px;
+					}
+				}
+			}
+		}
+		.menu-sub{
+			padding:15px 15px 60px 15px;
+			fieldset.form-group{
+				input.form-control{
+					text-align:center;
+					border-bottom:1px solid $mocha;
+				}
+			}
+			.button{
+				margin: 0 0 15px 0
+			}
+			.social{
+				@include flex(nowrap,center,center);
+				a{
+					width:35px;
+					height:35px;
+					@include flex(wrap,center,center);
+					&:active{
+						background:rgba($dimgray,.1);
+					}
+					svg{
+						width:18px;
+						path{
+							fill: $mocha;
+							@include animate(fill,.3s,ease-in-out);
+						}
+					}
+				}
+			}
+		}
+	}
+}

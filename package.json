@@ -1,0 +1,31 @@
+{
+  "name": "beautimode_frontend_new",
+  "version": "1.0.0",
+  "description": "My flawless Nuxt.js project",
+  "author": "mischa",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.4.1",
+    "nuxt": "^2.4.0",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "imagesloaded": "^4.1.4",
+    "masonry-layout": "^4.2.2",
+    "element-ui": "^2.4.11"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
+    "pug": "^2.0.3",
+    "pug-filters": "^3.1.0",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.1.0"
+  }
+}
